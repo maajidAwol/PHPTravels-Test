@@ -47,7 +47,7 @@ UL_TC02 User Login with Invalid Credentials
 
 UL_TC03 User Login with Locked Account
     [Tags]    Login
-    Enter Credentials    lockeduser@example.com    password123
+    Enter Credentials    abduawol@gmail.com    knpass123
     Click Button    ${loginButton}
     Wait Until Page Contains Element  id=rememberchb timeout=10s
     Log    Error message should be displayed indicating the account is locked, and user should not be logged in.
