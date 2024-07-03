@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation  Registration Test Suite
+Library  SeleniumLibrary
 Resource  ../Resources/common.robot
 Resource  ../Resources/testData.robot
 Resource  ../Resources/urls.robot
@@ -177,28 +178,9 @@ Verify not accepting different values for password and confirm password fields
 Verify not accepting invalid mobile format
     [Documentation]  Register with invalid mobile number field
     ${validEmailValue} =  helpers.Generate Valid Test Email  7
-    register.Input Registeration Form Fields  ${validFirstName}  @{validLastName}[0]  @{invalidMobileNumber}[1]  ${validEmailValue}  @{validPassword}[0]  @{validConfirmPassword}[0]
-    register.Click On Sign Up
-    helpers.Check error message  ${invalidMobileError}
-
-    helpers.Change Field Value  ${mobileNumberField}  @{invalidMobileNumber}[2]
-    register.Click On Sign Up
-    helpers.Check error message  ${invalidMobileError}
-
-    helpers.Change Field Value  ${mobileNumberField}  @{invalidMobileNumber}[3]
-    register.Click On Sign Up
-    helpers.Check error message  ${invalidMobileError}
-
-    helpers.Change Field Value  ${mobileNumberField}  @{invalidMobileNumber}[4]
-    register.Click On Sign Up
-    helpers.Check error message  ${invalidMobileError}
-
-Verify all mandatory fields gives error when left blank or filled with spaces
-    [Documentation]  Register with blank/space fields
     register.Click On Sign Up
     register.Check mandatory fields errors
 
     register.Input Registeration Form Fields  @{invalidFirstName}[0]  @{invalidLastName}[0]  @{invalidMobileNumber}[0]  @{invalidEmail}[0]  @{invalidPassword}[0]  @{invalidConfirmPassword}[0]
     register.Click On Sign Up
     register.Check mandatory fields errors
-

@@ -1,59 +1,48 @@
 *** Settings ***
-Documentation  All test data used in test suites
-Library  SeleniumLibrary  run_on_failure=Nothing
+Library           SeleniumLibrary
+
+Suite Setup       Open Browser And Navigate To Login
+Suite Teardown    Close Web Browser
 
 *** Variables ***
-# form fields test values
-${validFirstName} =  Salma
-@{validLastName} =  Badr  Salma
-${validEmail} =  ${GMAIL}
-@{validPassword} =  SalmaBadr#  Testing$
-@{validConfirmPassword} =  SalmaBadr#  Salma#
-${validMobileNumber} =  01023113090
+${BROWSER}                        Chrome
+${LOGIN_PAGE_URL}                 http://example.com/login
+${userEmailField}                 name=user_email
+${passwordField}                  name=password
+${phoneField}                     name=phone
+${rememberMeField}                id=rememberMe
+${emptyEmailError}                Email cannot be empty.
+${emptyPasswordError}             Password cannot be empty.
 
-@{invalidFirstName} =  ${SPACE}  salma  sa#$  salma salma  @#$^&
-@{invalidLastName} =  ${SPACE}  badr  ba$%^  salma badr  $%^*&
-@{nonGmail} =  ${HOTMAIL}  ${YAHOO}
-@{invalidEmail} =  ${SPACE}  salmabadr@gmail@gmail.com  salmabadr@$%^&.com  salma$%  salma  salma@gmail  salma@.com  salmabadr.com  $%&*#*!  salma()@gmail.com
-@{invalidPassword} =  ${SPACE}  123  !@#$  test  test12  test1&  teStss  TESTING  $%^&!#
-@{invalidConfirmPassword} =  ${SPACE}  123  !@#$  test  test12  test1&  teStss  TESTING  $%^&!#
-@{invalidMobileNumber} =  ${SPACE}  test  test123  010  123$%
+*** Keywords ***
+Open Browser And Navigate To Login
+    Open Browser    ${LOGIN_PAGE_URL}    ${BROWSER}
+    Maximize Browser Window
 
-# error messages
-${existedEmailError}=  Email Already Exists
-${nonGmailError}=  Only Gmail email addresses are allowed
-${invalidMailError}=  The Email field must contain a valid email address
-${emptyEmailError}=  The Email field is required
+Enter Credentials And Pause For CAPTCHA
+    [Arguments]    ${emailValue}    ${passwordValue}    ${phoneValue}
+    Make Input Visible When Filled    ${userEmailField}    ${emailValue}
+    Make Input Visible When Filled    ${passwordField}    ${passwordValue}
+    Make Input Visible When Filled    ${phoneField}    ${phoneValue}
+    Log    Please solve the CAPTCHA now.
+    Wait For User To Press Key    # Pauses execution for manual CAPTCHA solving
 
-${invalidFirstNameError}=  The First Name field must start with a capital letter and can't contain spaces or special characters
-${emptyFirstNameError}=  The First name field is required
+Make Input Visible When Filled
+    [Arguments]  ${fieldLocator}  ${fieldValue}
+    Clear Element Text  ${fieldLocator}
+    Input Text  ${fieldLocator}  ${fieldValue}
+    Execute JavaScript  document.querySelector('${fieldLocator}').style.visibility = 'visible'
 
-${invalidLastNameError}=  The Last Name field must start with a capital letter and can't contain spaces or special characters
-${emptyLastNameError}=  The Last Name field is required
+Capture Screenshot
+    [Arguments]  ${folderName}
+    Run Keyword If Test Failed  Capture Page Screenshot  ../Results/Screenshots/${folderName}/${TEST NAME}-Failed.png
 
-${firstNameEqualLastNameError}=  First Name and Last Name fields can't be equal
+Close Web Browser
+    Close Browser
 
-${invalidPasswordError}=  The Password field must have a capital letter, a small letter and a special character
-${shortPasswordError}=  The Password field must be at least 6 characters in length
-${passwordsNotMatchError}=  Password not matching with confirm password
-${emptyPasswordError}=  The Password field is required
-
-${invalidMobileError}=  Please enter a valid mobile number
-${emptyMobileError}=  The Mobile Number field is required
-
-${loginFaliure} =  Invalid Email or Password
-
-# Registration form fields locators
-${firstNameField} =  firstname
-${lastNameField} =  lastname
-${emailField} =  email
-${mobileNumberField} =  phone
-${passwordField} =  password
-${confirmPasswordField} =  confirmpassword
-${registerButton} =  //*[@id="headersignupform"]/div[9]/button
-
-# Login form fields locators
-${loginEmailField} =  username
-${loginPasswordField} =  password
-${rememberMeField} =  //*[@id="remember-me"]
-${loginButton} =  //*[@id="loginfrm"]/button
+*** Test Cases ***
+User Login With CAPTCHA
+    [Tags]    Login
+    Enter Credentials And Pause For CAPTCHA    user@example.com    password123    555-1234
+    # Add steps here to click the login button after CAPTCHA is solved
+    # Assuming you have a way to verify login success or failure

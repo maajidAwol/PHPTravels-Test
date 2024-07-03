@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.8.2rc2 on win32)" generated="2024-07-03T10:29:20.600316" rpa="false" schemaversion="5">
+<suite id="s1" name="UserManagement" source="C:\Users\hp\desktop\PhpTravels-Automation-Tests\UserManagement.robot">
+<kw name="Open Browser And Navigate To Login" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-07-03T10:29:21.067314" level="INFO">Opening browser 'Chrome' to base url 'https://www.phptravels.net/login'.</msg>
+<arg>${LOGIN_PAGE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-07-03T10:29:21.052313" elapsed="11.082642"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-07-03T10:29:32.135964" elapsed="0.045991"/>
+</kw>
+<status status="PASS" start="2024-07-03T10:29:21.051313" elapsed="11.130642"/>
+</kw>
+<test id="s1-t1" name="UL_TC02 User Login with Invalid Credentials" line="41">
+<kw name="Enter Credentials">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-03T10:29:32.191953" level="INFO">Typing text 'invalid@example.com' into text field 'id=email'.</msg>
+<msg time="2024-07-03T10:29:32.374958" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-07-03T10:29:32.374958" level="FAIL">Element with locator 'id=email' not found.</msg>
+<arg>${LoginEmailField}</arg>
+<arg>${emailValue}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="FAIL" start="2024-07-03T10:29:32.188956" elapsed="0.280998">Element with locator 'id=email' not found.</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${LoginPasswordField}</arg>
+<arg>${passwordValue}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.469954" elapsed="0.000000"/>
+</kw>
+<arg>invalid@example.com</arg>
+<arg>wrongpassword</arg>
+<status status="FAIL" start="2024-07-03T10:29:32.187960" elapsed="0.281994">Element with locator 'id=email' not found.</status>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${loginButton}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.470953" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id=rememberchb</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.471954" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Error message should be displayed indicating invalid credentials, and user should not be logged in.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.471954" elapsed="0.000000"/>
+</kw>
+<tag>Login</tag>
+<status status="FAIL" start="2024-07-03T10:29:32.181955" elapsed="0.290999">Element with locator 'id=email' not found.</status>
+</test>
+<test id="s1-t2" name="UL_TC03 User Login with Locked Account" line="48">
+<kw name="Enter Credentials">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-03T10:29:32.476953" level="INFO">Typing text 'lockeduser@example.com' into text field 'id=email'.</msg>
+<msg time="2024-07-03T10:29:32.616953" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-11.png"&gt;&lt;img src="selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-07-03T10:29:32.616953" level="FAIL">Element with locator 'id=email' not found.</msg>
+<arg>${LoginEmailField}</arg>
+<arg>${emailValue}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="FAIL" start="2024-07-03T10:29:32.475952" elapsed="0.142003">Element with locator 'id=email' not found.</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${LoginPasswordField}</arg>
+<arg>${passwordValue}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.617955" elapsed="0.000000"/>
+</kw>
+<arg>lockeduser@example.com</arg>
+<arg>password123</arg>
+<status status="FAIL" start="2024-07-03T10:29:32.475952" elapsed="0.142003">Element with locator 'id=email' not found.</status>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${loginButton}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.618955" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id=rememberchb</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.619955" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Error message should be displayed indicating the account is locked, and user should not be logged in.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.619955" elapsed="0.000000"/>
+</kw>
+<tag>Login</tag>
+<status status="FAIL" start="2024-07-03T10:29:32.474953" elapsed="0.146001">Element with locator 'id=email' not found.</status>
+</test>
+<test id="s1-t3" name="UL_TC01 User Login with Valid Credentials" line="54">
+<kw name="Enter Credentials">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-03T10:29:32.623953" level="INFO">Typing text 'maajidawol@gmail.com' into text field 'id=email'.</msg>
+<msg time="2024-07-03T10:29:32.741953" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-12.png"&gt;&lt;img src="selenium-screenshot-12.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-07-03T10:29:32.741953" level="FAIL">Element with locator 'id=email' not found.</msg>
+<arg>${LoginEmailField}</arg>
+<arg>${emailValue}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="FAIL" start="2024-07-03T10:29:32.622955" elapsed="0.120000">Element with locator 'id=email' not found.</status>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${LoginPasswordField}</arg>
+<arg>${passwordValue}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.742955" elapsed="0.000000"/>
+</kw>
+<arg>maajidawol@gmail.com</arg>
+<arg>password123</arg>
+<status status="FAIL" start="2024-07-03T10:29:32.622955" elapsed="0.120000">Element with locator 'id=email' not found.</status>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>${loginButton}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.743955" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>class=author-content</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.743955" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>User should be logged in successfully and redirected to the dashboard.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-07-03T10:29:32.744954" elapsed="0.000000"/>
+</kw>
+<tag>Login</tag>
+<status status="FAIL" start="2024-07-03T10:29:32.621954" elapsed="0.123000">Element with locator 'id=email' not found.</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-07-03T10:29:32.746954" elapsed="2.266798"/>
+</kw>
+<status status="FAIL" start="2024-07-03T10:29:20.602315" elapsed="14.411437"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="3" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="3" skip="0">Login</stat>
+</tag>
+<suite>
+<stat pass="0" fail="3" skip="0" id="s1" name="UserManagement">UserManagement</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

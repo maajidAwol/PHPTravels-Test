@@ -7,7 +7,6 @@ Resource  ../Resources/helpers.robot
 *** Keywords ***
 Begin Registration Test
     helpers.Open Web Browser  ${registerPage}
-
 End Registration Test
     helpers.Capture screenshot  register
     helpers.Close Web Browser
