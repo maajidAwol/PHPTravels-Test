@@ -57,5 +57,5 @@ Running:
 
 ```
 run command
-robot testsuitename.robot
+robot UserManagement.robot
 ```
